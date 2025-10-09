@@ -8,11 +8,8 @@ public class Lifo extends JobScheduler {
 		this.strategy = "LIFO";
 	}
 	
-	public JobDescription next() {
-        JobDescription nextJob = null;
-        
-		nextJob = jobs.get(jobs.size()-1);
-        this.unschedule(nextJob);
-        return nextJob;
+	protected JobDescription nextJob() {
+		return jobs.get(jobs.size()-1);
 	}
 }
+
