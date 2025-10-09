@@ -8,9 +8,10 @@ public class Fifo extends JobScheduler {
 		this.strategy = "FIFO";
 	}
 	
-    public JobDescription nextJob() {
+    protected JobDescription nextJob() {
         return jobs.get(0);
     }
 
 }
+
 
