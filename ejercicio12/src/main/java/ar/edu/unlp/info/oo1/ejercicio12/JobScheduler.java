@@ -30,7 +30,13 @@ public abstract class JobScheduler {
         return jobs;
     }
 
-
-    public abstract JobDescription next();
+    protected abstract JobDescription nextJob();
+    
+    public JobDescription next() {
+    	JobDescription nextJob = this.nextJob();
+    	this.unschedule(nextJob);
+    	return nextJob;
+    };
 
 }
+
