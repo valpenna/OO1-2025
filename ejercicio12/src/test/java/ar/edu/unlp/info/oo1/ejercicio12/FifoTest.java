@@ -24,11 +24,12 @@ public class FifoTest {
     @BeforeEach
     void setUp() {
         this.initializeJobs();
+    
+
+        fifoScheduler = new Fifo();
+     
     }
-
-    JobScheduler fifoScheduler = new Fifo();
-   
-
+    
     private void scheduleJobsIn(JobScheduler aJobScheduler) {
         aJobScheduler.schedule(firstJob);
         aJobScheduler.schedule(highestPriorityJob);
@@ -38,9 +39,8 @@ public class FifoTest {
     
     @Test
     void testSchedule() {
-        JobScheduler aScheduler = new Fifo();
-        aScheduler.schedule(highestPriorityJob);
-        assertTrue(aScheduler.getJobs().contains(highestPriorityJob));
+    	fifoScheduler.schedule(highestPriorityJob);
+        assertTrue(fifoScheduler.getJobs().contains(highestPriorityJob));
     }
 
     @Test
@@ -62,4 +62,6 @@ public class FifoTest {
         assertEquals(scheduler.getJobs().size(), 3);
     }
 
+
 }
+
