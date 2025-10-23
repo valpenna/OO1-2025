@@ -21,7 +21,7 @@ public class Carpeta {
 	
 	public Email buscarEnCarpeta(String texto) {
 		return this.emails.stream()
-				.filter(e->e.toString().startsWith(texto))
+				.filter(e->e.coincide(texto))
 				.findFirst().orElse(null);
 	}
 	

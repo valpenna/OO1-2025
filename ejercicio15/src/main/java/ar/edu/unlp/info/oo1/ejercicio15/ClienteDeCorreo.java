@@ -2,6 +2,7 @@ package ar.edu.unlp.info.oo1.ejercicio15;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ClienteDeCorreo {
 	private Carpeta inbox;
@@ -15,11 +16,12 @@ public class ClienteDeCorreo {
 		this.inbox.recibir(email);
 	}
 	
-/*	public Email buscar(Email email) {
+	public Email buscar(String texto) {
 		return this.carpetas.stream()
-				.filter(c->c.buscarEnCarpeta(texto))
-				.collect();
-	}*/
+				.map(c->c.buscarEnCarpeta(texto))
+				.filter(Objects::nonNull)
+				.findFirst().orElse(null);
+	}
 	
 	public int espacioOcupado() {
 		return this.carpetas.stream()
