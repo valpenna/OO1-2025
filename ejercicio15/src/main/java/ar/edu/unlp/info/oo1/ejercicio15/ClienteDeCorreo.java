@@ -15,12 +15,16 @@ public class ClienteDeCorreo {
 		this.inbox.recibir(email);
 	}
 	
-	public Email buscar(Email email) {
-		return null;
-	}
+/*	public Email buscar(Email email) {
+		return this.carpetas.stream()
+				.filter(c->c.buscarEnCarpeta(texto))
+				.collect();
+	}*/
 	
 	public int espacioOcupado() {
-		return 0;
+		return this.carpetas.stream()
+				.mapToInt(c->c.espacioOcupadoCarpeta())
+				.sum();
 	}
 	
 	

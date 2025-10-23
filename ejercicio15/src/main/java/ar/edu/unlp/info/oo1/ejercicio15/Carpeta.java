@@ -11,10 +11,23 @@ public class Carpeta {
 	}
 	
 	public void mover(Email email, Carpeta destino) {
-		
+		this.emails.remove(email);
+		destino.recibir(email);
 	}
 	
 	public void recibir(Email email) {
 		this.emails.add(email);
+	}
+	
+	public Email buscarEnCarpeta(String texto) {
+		return this.emails.stream()
+				.filter(e->e.toString().startsWith(texto))
+				.findFirst().orElse(null);
+	}
+	
+	public int espacioOcupadoCarpeta() {
+		return this.emails.stream()
+				.mapToInt(e->e.espacioOcupadoEmail())
+				.sum();
 	}
 }
