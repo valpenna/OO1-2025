@@ -8,7 +8,6 @@ public class Propiedad {
 	private String direccion;
 	private String nombreDescriptivo;
 	private double precioPorNoche;
-	private Usuario propietario;
 	private List<Reserva> reservas;
 	
 	
@@ -67,3 +66,4 @@ public class Propiedad {
 				.sum();
 	}
 }
+
