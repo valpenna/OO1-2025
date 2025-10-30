@@ -31,9 +31,9 @@ public class Propiedad {
 		} else {
 			DateLapse periodo = new DateLapse(fechaInicial, fechaFinal);
 			esta = this.reservas.stream()
-					.noneMatch(r->r.getPeriodo().overlaps(periodo));
+					.noneMatch(r->r.coincide(periodo));
 		}
-		return esta;
+		return esta; //verificar que sea true
 	}
 	
 	public void crearReserva(LocalDate fechaInicio, LocalDate fechaFin) {
@@ -46,7 +46,7 @@ public class Propiedad {
 	
 	
 	public boolean cancelarReserva(Reserva reserva) {
-		if(reserva.getPeriodo().includesDate(LocalDate.now())) {
+		if(reserva.incluyeFechaHoy()) {
 			return false;
 		} else {
 			this.reservas.remove(reserva);
@@ -54,10 +54,15 @@ public class Propiedad {
 		}
 	}
 	
+	public double devolverPrecioPorPeriodo(DateLapse periodo) {
+		return this.precioPorNoche * periodo.sizeInDays();
+	}
+	
+	
 	public double calcularIngresos(LocalDate fechaInicio, LocalDate fechaFin) {
 		DateLapse periodo = new DateLapse(fechaInicio, fechaFin);
 		return 0.75 * this.reservas.stream()
-				.filter(r->r.getPeriodo().overlaps(periodo))
+				.filter(r->r.coincide(periodo))
 				.mapToDouble(r->r.calcularPrecioReserva())
 				.sum();
 	}
