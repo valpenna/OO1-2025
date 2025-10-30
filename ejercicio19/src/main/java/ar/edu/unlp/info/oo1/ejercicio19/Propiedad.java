@@ -15,7 +15,6 @@ public class Propiedad {
 		this.direccion = direccion;
 		this.nombreDescriptivo = nombre;
 		this.precioPorNoche = precioPorNoche;
-		this.propietario = propietario;
 		this.reservas = new ArrayList<Reserva>();
 	}
 	
@@ -66,4 +65,5 @@ public class Propiedad {
 				.sum();
 	}
 }
+
 
