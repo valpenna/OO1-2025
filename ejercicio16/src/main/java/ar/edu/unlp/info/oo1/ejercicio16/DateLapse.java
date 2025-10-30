@@ -3,7 +3,7 @@ package ar.edu.unlp.info.oo1.ejercicio16;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public class DateLapse {
+public class DateLapse implements DateLapseInterface{
 	private LocalDate from;
 	private LocalDate to;
 	
@@ -32,6 +32,14 @@ public class DateLapse {
 		return other.isAfter(from) && other.isBefore(to);
 	}
 //	“recibe un objeto LocalDate y retorna true si la fecha está entre el from y el to del receptor y false en caso contrario”.
+
+	public boolean overlaps(DateLapse anotherDateLapse) {
+		return !(
+		        this.getTo().isBefore(anotherDateLapse.getFrom()) ||
+		        anotherDateLapse.getTo().isBefore(this.getFrom())
+		    );
+	}
+//  Retorna true si el período de tiempo del receptor se superpone con el recibido por parámetro
 
 
 }
