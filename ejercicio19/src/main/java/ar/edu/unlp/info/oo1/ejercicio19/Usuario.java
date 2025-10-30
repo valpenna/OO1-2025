@@ -1,5 +1,6 @@
 package ar.edu.unlp.info.oo1.ejercicio19;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,5 +15,11 @@ public class Usuario {
 		this.direccion = direccion;
 		this.DNI = DNI;
 		this.propiedades = new ArrayList<Propiedad>();
+	}
+	
+	public double calcularIngresosPropiedades(LocalDate fIni, LocalDate fHasta) {
+		return propiedades.stream()
+				.mapToDouble(p->p.calcularIngresos(fIni, fHasta))
+				.sum();
 	}
 }
