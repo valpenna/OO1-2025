@@ -28,9 +28,9 @@ public class Email {
 					
 	}
 	
-//	public boolean coincide(String texto) {
-//		return this.titulo.equals(texto) || this.cuerpo.equals(texto);
-//	}
+	public boolean coincide(String texto) {
+		return this.titulo.equals(texto) || this.cuerpo.equals(texto);
+	}
 
 	
 	public String toString() {
