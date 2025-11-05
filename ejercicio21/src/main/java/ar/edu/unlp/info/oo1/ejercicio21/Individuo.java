@@ -13,6 +13,7 @@ public class Individuo extends Cliente{
 	//override porque agrego descuento
 	@Override
 	public double montoAPagar(LocalDate fIni, LocalDate fFin) {
-		return 0;
+		double montoSinDesc = super.montoAPagar(fIni, fFin);
+		return montoSinDesc - montoSinDesc * 0.10;
 	}
 }

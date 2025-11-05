@@ -20,4 +20,8 @@ public abstract class Envio {
 	public LocalDate getFechaDespacho() {
 		return this.fechaDespacho;
 	}
+	
+	public boolean estaEnRango(DateLapse periodo) {
+		return periodo.includesDate(fechaDespacho);
+	}
 }

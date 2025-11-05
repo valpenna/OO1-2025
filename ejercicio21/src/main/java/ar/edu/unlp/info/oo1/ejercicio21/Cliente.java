@@ -22,7 +22,7 @@ public abstract class Cliente {
 	public double montoAPagar(LocalDate fIni, LocalDate fFin) {
 		DateLapse periodo = new DateLapse(fIni, fFin);
 		return this.envios.stream()
-				.filter(e -> periodo.includesDate(e.getFechaDespacho()))
+				.filter(e -> e.estaEnRango(periodo))
 				.mapToDouble(e-> e.calcularCosto())
 				.sum();
 	}

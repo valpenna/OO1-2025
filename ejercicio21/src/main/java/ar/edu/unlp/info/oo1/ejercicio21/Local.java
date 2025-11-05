@@ -17,3 +17,14 @@ public class Local extends Envio{
 	}
 
 }
+
+/*
+PARTICIONES EQUIVALENTES
+Dado el metodo calcularCosto() se comporta igual para las siguientes partes
+.Para las que no tienen envio rapido
+.Para las que tienen envio rapido
+
+VALORES BORDE
+No son explicitos
+
+*/
