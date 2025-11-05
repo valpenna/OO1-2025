@@ -15,12 +15,20 @@ public class ClienteDeCorreo {
 		this.inbox.recibir(email);
 	}
 	
-/*	public Email buscar(Email email) {
-		return this.carpetas.stream()
-				.filter(c->c.buscarEnCarpeta(texto))
-				.collect();
-	}*/
-	
+	public Email buscar(String texto) {
+	    // Primero busca en el inbox
+	    Email encontrado = this.inbox.buscarEnCarpeta(texto);
+	    if (encontrado != null)
+	        return encontrado;
+	    
+	    // Si no está en el inbox, busca en las demás carpetas
+	    return this.carpetas.stream()
+	            .map(c -> c.buscarEnCarpeta(texto))
+	            .filter(e -> e != null)
+	            .findFirst()
+	            .orElse(null);
+	}
+
 	public int espacioOcupado() {
 		return this.carpetas.stream()
 				.mapToInt(c->c.espacioOcupadoCarpeta())
