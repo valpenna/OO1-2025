@@ -9,6 +9,7 @@ public class Propiedad {
 	private String nombreDescriptivo;
 	private double precioPorNoche;
 	private List<Reserva> reservas;
+	private PoliticaDeCancelacion politica;
 	
 	
 	public Propiedad(String direccion, String nombre, double precioPorNoche) {
@@ -16,6 +17,7 @@ public class Propiedad {
 		this.nombreDescriptivo = nombre;
 		this.precioPorNoche = precioPorNoche;
 		this.reservas = new ArrayList<Reserva>();
+		this.politica = new Flexible();
 	}
 	
 	public double getPrecioPorNoche() {
@@ -46,10 +48,11 @@ public class Propiedad {
 	}
 	
 	
-	public boolean cancelarReserva(Reserva reserva) {
-		if (!this.reservas.contains(reserva)) return false;
-	    if (reserva.incluyeFechaHoy()) return false;
-	    return this.reservas.remove(reserva);
+	public double cancelarReserva(Reserva reserva) {
+		if (!this.reservas.contains(reserva)) return 0;
+	    if (reserva.incluyeFechaHoy()) return 0;
+		this.reservas.remove(reserva);
+		return politica.montoDevuelto(reserva, LocalDate.now());
 	}
 	
 	public double devolverPrecioPorPeriodo(DateLapse periodo) {
